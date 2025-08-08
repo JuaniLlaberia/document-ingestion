@@ -1,0 +1,4 @@
+document-ingestion.log
+.env
+__pycache__
+.venv

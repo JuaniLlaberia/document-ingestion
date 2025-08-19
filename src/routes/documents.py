@@ -42,8 +42,13 @@ def ingest_document():
         logging.info(f"Successfully added {len(content_chunks)} document chunks to 'documents' collection")
 
         # Save images descriptions
-        descriptions = [image.description for image in images]
-        client.ingest_chunks(chunks=descriptions, collection_name="images")
+        descriptions = []
+        metadatas = []
+        for image in images:
+            descriptions.append(image.description)
+            metadatas.append({"image_url": str(image.path)})
+
+        client.ingest_chunks(chunks=descriptions, collection_name="images", metadatas=metadatas, embedding_type="image")
         logging.info(f"Successfully added {len(descriptions)} descriptions to 'images' collection")
 
         return jsonify({"message": f"Successfully added documents ({len(content_chunks)}) and images description ({len(descriptions)})"}), 201

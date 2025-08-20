@@ -1,0 +1,9 @@
+flask
+langchain_text_splitters
+python-dotenv
+pydantic
+PyPDF2
+python-docx
+chromadb
+ollama
+docling
